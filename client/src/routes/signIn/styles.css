@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+.to__main {
+  text-align: center;
+  margin: 10px auto;
+}
+
+.trello-logo-blue {
+  width: 10%;
+}
+
+.signin__block {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 30%;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+}
+
+.signin__block h1 {
+  margin: 0 0 20px 0;
+}
+
+.signIn__form {
+  width: 100%;
+}
+
+.signIn__btn {
+  width: 100%;
+  color: white;
+  background-color: rgb(39, 170, 39);
+  border: none;
+  border-radius: 3px;
+  padding: 7px;
+  margin: 5px auto;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.signIn__btn:hover {
+  background-color: rgb(81, 202, 81);
+}
+.signIn__btn:focus {
+  background-color: rgb(47, 139, 47);
+}
+
+.not__registered {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.signUp_link {
+  margin: 16px 2px;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  width: 100%;
+}

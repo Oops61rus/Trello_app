@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.sign__up {
+  width: 30%;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+}
+
+.sign__up h1 {
+  margin: 0 0 20px 0;
+}
+
+h1 {
+  width: 100%;
+  text-align: center;
+}
+
+.sign__up__block {
+  width: 100%;
+  margin: auto;
+}
+
+.name,
+.email,
+.password {
+  width: 100%;
+  margin: 5px auto;
+  padding: 7px;
+  border-radius: 3px;
+  border: 2px solid #dfe1e6;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.name:focus,
+.email:focus,
+.password:focus {
+  border-color: blueviolet;
+}
+
+.name:hover,
+.email:hover,
+.password:hover {
+  border-color: #939494;
+}
+
+.sign__up__btn {
+  color: white;
+  background-color: rgb(39, 170, 39);
+  margin: 5px auto;
+  padding: 7px;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.sign__up__btn:hover {
+  background-color: rgb(81, 202, 81);
+}
+.sign__up__btn:focus {
+  background-color: rgb(47, 139, 47);
+}
+
+.errors {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: firebrick;
+  margin: 5px;
+  width: 100%;
+}
+
+.errors span {
+  background-color: firebrick;
+  text-align: center;
+  width: 100%;
+  margin: 5px;
+}
+
+.signIn_link {
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,36 @@
+.main__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  margin: 0;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.main__logo {
+  width: 100px;
+}
+
+.header__buttons {
+  display: flex;
+  align-items: center;
+}
+
+.login__btn,
+.signup__btn {
+  background-color: transparent;
+  color: white;
+  border: none;
+  margin: 0 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+.signup__btn {
+  background-color: white;
+  color: #5f5fff;
+}
