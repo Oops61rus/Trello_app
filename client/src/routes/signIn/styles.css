@@ -5,6 +5,8 @@
 .to__main {
   text-align: center;
   margin: 10px auto;
+  outline: none;
+  width: 100%;
 }
 
 .trello-logo-blue {

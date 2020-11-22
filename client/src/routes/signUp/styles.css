@@ -41,16 +41,16 @@ h1 {
   transition: all 0.2s ease;
 }
 
-.name:focus,
-.email:focus,
-.password:focus {
-  border-color: blueviolet;
-}
-
 .name:hover,
 .email:hover,
 .password:hover {
   border-color: #939494;
+}
+
+.name:focus,
+.email:focus,
+.password:focus {
+  border-color: blueviolet;
 }
 
 .sign__up__btn {

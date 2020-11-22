@@ -7,9 +7,11 @@ import "./styles.css";
 export default function SignIn() {
   return (
     <>
-      <Link to="/" className="to__main">
-        <img src={img} alt="Trello logo" className="trello-logo-blue" />
-      </Link>
+      <div className="to__main">
+        <Link to="/">
+          <img src={img} alt="Trello logo" className="trello-logo-blue" />
+        </Link>
+      </div>
       <div className="signin__block">
         <h1>Sign in, please</h1>
         <form className="signIn__form">

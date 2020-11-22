@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useReducer, useState } from "react";
+import { Redirect } from "react-router-dom";
+import { checkUser } from "../../../core/store/auth/actions";
+import { authReducer } from "../../../core/store/auth/reducer";
 import img from "../../../img/hero-a.svg";
 import "./styles.css";
 
 export const MainBody = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const initialState = {
+    email: "",
   };
+  const [value, setValue] = useState(initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState);
+
+  const handleChange = (event) => {
+    setValue({ ...value, [event.target.name]: event.target.value });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(checkUser(value));
+    console.log(1);
+  };
+
+  if (state.isAuthenticated) <Redirect to="/{username}/boards" />;
 
   return (
     <>
@@ -26,16 +43,20 @@ export const MainBody = () => {
         </div>
         <div className="signup__block">
           <input
+            name="email"
             type="email"
             placeholder="E-mail"
             className="sign__up__input"
+            onChange={handleChange}
           />
-          <input
+          <button
             type="submit"
             className="registration__btn"
-            value="Sign Up - It's free"
             onClick={handleSubmit}
-          />
+          >
+            Sign Up - It's free
+          </button>
+          <div className="errors"></div>
         </div>
       </div>
     </>
