@@ -1,7 +1,7 @@
-import React, { useReducer, useState } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { checkUser } from "../../../core/store/auth/actions";
-import { authReducer } from "../../../core/store/auth/reducer";
 import img from "../../../img/hero-a.svg";
 import "./styles.css";
 
@@ -9,20 +9,24 @@ export const MainBody = () => {
   const initialState = {
     email: "",
   };
+  // const isAuthenticated = useSelector(
+  //   (state) => state.authReducer.isAuthenticated
+  // );
+
   const [value, setValue] = useState(initialState);
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
     setValue({ ...value, [event.target.name]: event.target.value });
   };
 
   const handleSubmit = (event) => {
+    if (!value.email) return;
     event.preventDefault();
     dispatch(checkUser(value));
-    console.log(1);
   };
 
-  if (state.isAuthenticated) <Redirect to="/{username}/boards" />;
+  // if (isAuthenticated) <Redirect to="/{username}/boards" />;
 
   return (
     <>

@@ -1,12 +1,11 @@
 import { isCreatedUser } from "../../../api/userApi";
-import { useHistory } from "react-router-dom";
+// import history from "../../../utils/history";
+import { history } from "../index";
 
 export const CHECK_USER = "CHECK_USER";
 export const AUTH_USER_SUCCESS = "AUTH_USER_SUCCESS";
 
 export const checkUser = (data) => async (dispatch) => {
-  const history = useHistory();
-  console.log(2);
   try {
     const response = await isCreatedUser(data);
     dispatch({ type: CHECK_USER, payload: response.data });
