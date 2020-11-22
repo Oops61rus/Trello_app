@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 // import history from "./utils/history";
@@ -18,13 +18,11 @@ function App() {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <Router>
-          <Switch>
-            <Route path="/" component={Main} exact />
-            <Route path="/login" component={SignIn} exact />
-            <Route path="/registration" component={SignUp} exact />
-          </Switch>
-        </Router>
+        <Switch>
+          <Route path="/" component={Main} exact />
+          <Route path="/login" component={SignIn} exact />
+          <Route path="/registration" component={SignUp} exact />
+        </Switch>
       </ConnectedRouter>
     </Provider>
   );
