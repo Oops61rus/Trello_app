@@ -1,7 +1,7 @@
-const createToken = require("../services/createToken");
-const createHash = require("../services/createHash");
-const checkHash = require("../services/checkHash");
-const User = require("../models/user");
+const createToken = require('../services/createToken');
+const createHash = require('../services/createHash');
+const checkHash = require('../services/checkHash');
+const User = require('../models');
 
 module.exports = {
   registerUser: async (req, res) => {
@@ -18,9 +18,7 @@ module.exports = {
         token: createToken(data.name, data.email),
       });
     } catch (e) {
-      res
-        // .status(400)
-        .json({ message: "Email alredy exists" });
+      res.json({ message: 'Email alredy exists' });
     }
   },
 
@@ -33,7 +31,7 @@ module.exports = {
         },
       });
       if (!checkHash(user.password, userDB.password))
-        throw new Error("Invalid email or password");
+        throw new Error('Invalid email or password');
       const token = createToken(userDB.name, userDB.email);
       const activeUser = {
         name: userDB.name,
@@ -55,8 +53,10 @@ module.exports = {
           email: user.email,
         },
       });
+      console.log(userDB);
       res.data(userDB);
     } catch (err) {
+      console.log(err);
       res.json(err);
     }
   },
