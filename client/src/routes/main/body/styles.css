@@ -54,6 +54,10 @@
   flex-wrap: wrap;
 }
 
+.signup__form {
+  width: 100%;
+}
+
 .sign__up__input {
   outline: none;
   height: 40px;
