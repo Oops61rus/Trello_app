@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import img from "img/trello-logo-blue.png";
+import img from "images/trello-logo-blue.png";
 import "./styles.css";
 
 const SignIn: React.FC = () => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -6,7 +6,7 @@ import * as yup from "yup";
 
 import { checkUser } from "core/store/auth/actions";
 import { IFormOneInput } from 'types';
-import img from "img/hero-a.svg";
+import img from "images/hero-a.svg";
 import "./styles.css";
 
 
@@ -15,19 +15,13 @@ let schema = yup.object().shape({
 })
 
 const MainBody: React.FC = () => {
-  const [value, setValue] = useState('');
+  const dispatch = useDispatch();
   const { register, handleSubmit, watch, errors } = useForm<IFormOneInput>({
     resolver: yupResolver(schema)
   });
 
-  const dispatch = useDispatch();
   watch("email");
-  
-  const onSubmit = (value: IFormOneInput) => dispatch(checkUser(value));
-  
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setValue(event.target.value);
-  };
+  const onSubmit = (data: IFormOneInput) => dispatch(checkUser(data));
 
   return (
     <>
@@ -53,7 +47,6 @@ const MainBody: React.FC = () => {
               type="email"
               placeholder="E-mail"
               className="sign__up__input"
-              onChange={handleChange}
               ref={register}
             />
             <input

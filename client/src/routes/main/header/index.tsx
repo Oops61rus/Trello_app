@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./styles.css";
-import img from "img/Trello-logo.png";
+import img from "images/Trello-logo.png";
 
 const MainHeader: React.FC = () => (
   <div className="main__header">

@@ -1,10 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-import img from "img/trello-logo-blue.png";
+import { IFormInputs } from 'types';
+import img from "images/trello-logo-blue.png";
 import "./styles.css";
+import { signUp } from 'core/store/auth/actions';
+
+let schema = yup.object().shape({
+  name: yup.string().required(),
+  email: yup.string().email(),
+  password: yup.string().min(5).max(30)
+})
 
 export default function SignUp() {
+  const dispatch = useDispatch()
+  const { register, handleSubmit, watch, errors } = useForm<IFormInputs>({
+    resolver: yupResolver(schema)
+  });
+
+  watch()
+  const onSubmit = (data: IFormInputs) => dispatch(signUp(data)); 
+
   return (
     <>
       <div className="to__main">
