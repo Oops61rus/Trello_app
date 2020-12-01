@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import img from "../../img/trello-logo-blue.png";
 
+import img from "img/trello-logo-blue.png";
 import "./styles.css";
 
-export default function SignIn() {
+const SignIn: React.FC = () => {
   return (
     <>
       <div className="to__main">
@@ -34,3 +34,5 @@ export default function SignIn() {
     </>
   );
 }
+
+export default SignIn;
