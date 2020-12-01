@@ -1,13 +1,14 @@
-import { CHECK_USER, AUTH_USER_SUCCESS } from "./actions";
+import { IUserLogin, IUserLoginAction } from 'interfaces';
+import { CHECK_USER, AUTH_USER_SUCCESS } from 'core/store/auth/actions';
 
-const initialState = {
-  email: "",
-  name: "",
-  id: "",
+const initialState: IUserLogin = {
+  email: '',
+  name: '',
+  id: '',
   isAuthenticated: false,
 };
 
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action: IUserLoginAction) => {
   const { type, payload } = action;
   switch (type) {
     case CHECK_USER:
