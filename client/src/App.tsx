@@ -2,19 +2,18 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
-// import history from "./utils/history";
 
-import configureStore, { history } from "./core/store";
-
-import SignIn from "./routes/signIn/index";
-import SignUp from "./routes/signUp/index";
-import Main from "./routes/main";
+import configureStore from "core/store";
+import history from 'utils/history'
+import SignIn from "routes/signIn/index";
+import SignUp from "routes/signUp/index";
+import Main from "routes/main";
 
 import "./App.css";
 
 const store = configureStore();
 
-function App() {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>
