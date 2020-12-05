@@ -14,7 +14,7 @@ router.post(
 router.post(
   '/registration',
   validate([
-    body('username').not().isEmpty().trim(),
+    body('name').not().isEmpty().trim(),
     body('email').not().isEmpty().trim().isEmail().normalizeEmail(),
     body('password').not().isEmpty().isLength({ min: 5 }),
     body('passwordConfirm').custom((value, { req }) => {

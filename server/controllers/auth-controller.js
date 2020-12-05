@@ -1,16 +1,17 @@
 const createToken = require('../services/createToken');
 const createHash = require('../services/createHash');
 const checkHash = require('../services/checkHash');
-const User = require('../models');
+const models = require('../models');
+const User = models.User;
 
 module.exports = {
   registerUser: async (req, res) => {
     try {
       const data = req.body;
+      console.log(data);
       data.password = createHash(data.password);
 
-      const user = await User.create({ ...user });
-
+      const user = await User.create({ ...data });
       res.status(201).json({
         name: user.name,
         email: user.email,
@@ -18,7 +19,8 @@ module.exports = {
         token: createToken(data.name, data.email),
       });
     } catch (e) {
-      res.json({ message: 'Email alredy exists' });
+      console.log(e);
+      res.json({ error: e });
     }
   },
 
@@ -48,6 +50,7 @@ module.exports = {
   checkUser: async (req, res) => {
     const user = req.body;
     try {
+      console.log(user);
       const userDB = await User.findOne({
         where: {
           email: user.email,
