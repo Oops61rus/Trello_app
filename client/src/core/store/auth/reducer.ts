@@ -1,11 +1,11 @@
-import { IUserLogin, IUserLoginAction } from 'interfaces';
+import { IUserLoginAction, IUserDataForLogin } from 'interfaces';
 import { CHECK_USER, AUTH_USER_SUCCESS } from 'core/store/auth/actions';
 
-const initialState: IUserLogin = {
+const initialState: IUserDataForLogin = {
   email: '',
   name: '',
   id: '',
-  isAuthenticated: false,
+  isAuthenticated: Boolean(localStorage.getItem('token')),
 };
 
 export const authReducer = (state = initialState, action: IUserLoginAction) => {

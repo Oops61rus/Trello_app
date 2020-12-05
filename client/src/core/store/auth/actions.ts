@@ -2,18 +2,16 @@ import { push } from "connected-react-router";
 import { Dispatch } from 'redux';
 
 import { isCreatedUser, registerUser } from "api/userApi";
-import { IFormInputs, IFormOneInput } from 'types';
+import { IFormInputs, IFormOneInput, IServerResponse } from 'interfaces';
 
 export const CHECK_USER: string = "CHECK_USER";
 export const AUTH_USER_SUCCESS: string = "AUTH_USER_SUCCESS";
 
 export const checkUser = (data: IFormOneInput) => async (dispatch: Dispatch) => {
   try {
-    console.log(data)
     const response = await isCreatedUser(data);
     dispatch({ type: CHECK_USER, payload: response.data });
-    console.log(response)
-    // dispatch(push("/login"));
+    dispatch(push("/login"));
   } catch (err) {
     console.log(err);
     dispatch(push("/registration"));
@@ -22,8 +20,8 @@ export const checkUser = (data: IFormOneInput) => async (dispatch: Dispatch) => 
 
 export const signUp = (data: IFormInputs) => async (dispatch: Dispatch) => {
   try {
-    console.log(data)
     const response = await registerUser(data);
+    console.log(response)
     dispatch({ type: AUTH_USER_SUCCESS, payload: response.data });
     setToken(response.data)
   } catch (err) {
@@ -31,9 +29,11 @@ export const signUp = (data: IFormInputs) => async (dispatch: Dispatch) => {
   }
 }
 
-
-export const setToken = (data: {token: string}) => {
-  localStorage.setItem('token', data.token)
+export const setToken = (data: IServerResponse) => {
+  localStorage.setItem('token', data.token);
+  localStorage.setItem('profileEmail', data.email);
+  localStorage.setItem('profileName', data.name);
+  localStorage.setItem('profileId', data.id);
 }
 
 export const logOut = () => {

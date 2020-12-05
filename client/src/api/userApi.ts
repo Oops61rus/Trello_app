@@ -1,6 +1,6 @@
 import axiosInstance from "utils/axiosInstance";
 
-import { IFormInputs, IFormOneInput } from 'types';
+import { IFormInputs, IFormOneInput } from 'interfaces';
 
 export const isCreatedUser = (data: IFormOneInput) => axiosInstance.post("/auth/", data);
 export const registerUser = (data: IFormInputs) =>
