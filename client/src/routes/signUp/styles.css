@@ -74,18 +74,13 @@ h1 {
 
 .errors {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
-  color: firebrick;
-  margin: 5px;
+  color: white;
+  padding: 5px;
+  border-radius: 4px;
   width: 100%;
-}
-
-.errors span {
-  background-color: firebrick;
-  text-align: center;
-  width: 100%;
-  margin: 5px;
+  background-color: #eb5a46;
 }
 
 .signIn_link {

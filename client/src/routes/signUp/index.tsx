@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { IFormInputs } from 'types';
-import img from "images/trello-logo-blue.png";
+import { IFormInputs } from 'interfaces';
+import img from "assets/images/trello-logo-blue.png";
 import "./styles.css";
 import { signUp } from 'core/store/auth/actions';
 
@@ -18,11 +18,10 @@ let schema = yup.object().shape({
 
 export default function SignUp() {
   const dispatch = useDispatch()
-  const { register, handleSubmit, watch, errors } = useForm<IFormInputs>({
+  const { register, handleSubmit, errors } = useForm<IFormInputs>({
     resolver: yupResolver(schema)
   });
 
-  watch()
   const onSubmit = (data: IFormInputs) => dispatch(signUp(data)); 
 
   return (
@@ -34,23 +33,39 @@ export default function SignUp() {
       </div>
       <div className="sign__up">
         <h1>Registration</h1>
-        <form className="sign__up__block">
-          <input type="text" className="name" placeholder="Enter your Name" />
+        <form className="sign__up__block" onSubmit={handleSubmit(onSubmit)}>
+          <input 
+            name="name" 
+            type="text" 
+            className="name" 
+            placeholder="Enter your Name" 
+            ref={register}
+          />
+          <div className="errors">{errors.name?.message}</div>
           <input
+            name="email"
             type="email"
             className="email"
             placeholder="Enter your Email"
+            ref={register}
           />
+          <div className="errors">{errors.email?.message}</div>
           <input
+            name="password"
             type="password"
             className="password"
             placeholder="Enter your password"
+            ref={register}
           />
+          <div className="errors">{errors.password?.message}</div>
           <input
+            name="passwordConfirm"
             type="password"
             className="password"
             placeholder="Confirm your password"
+            ref={register}
           />
+          <div className="errors">{errors.passwordConfirm?.message}</div>
           <button type="submit" className="sign__up__btn">
             Sign Up
           </button>
@@ -58,7 +73,6 @@ export default function SignUp() {
         <Link to="/login" className="signIn_link">
           Already have account? Log in
         </Link>
-        <div className="errors"></div>
       </div>
     </>
   );
