@@ -5,8 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
 import { checkUser } from "core/store/auth/actions";
-import { IFormOneInput } from 'types';
-import img from "images/hero-a.svg";
+import { IFormOneInput } from 'interfaces';
+import img from "assets/images/hero-a.svg";
 import "./styles.css";
 
 
@@ -16,11 +16,10 @@ let schema = yup.object().shape({
 
 const MainBody: React.FC = () => {
   const dispatch = useDispatch();
-  const { register, handleSubmit, watch, errors } = useForm<IFormOneInput>({
+  const { register, handleSubmit, errors } = useForm<IFormOneInput>({
     resolver: yupResolver(schema)
   });
 
-  watch("email");
   const onSubmit = (data: IFormOneInput) => dispatch(checkUser(data));
 
   return (
