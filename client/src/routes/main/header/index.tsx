@@ -7,6 +7,7 @@ import img from "assets/images/Trello-logo.png";
 const MainHeader: React.FC = () => (
   <div className="main__header">
     <img src={img} alt="Trello logo" className="main__logo" />
+    
     <div className="header__buttons">
       <Link to="/login" className="login__btn">
         Log In
