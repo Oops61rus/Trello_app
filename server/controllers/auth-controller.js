@@ -51,16 +51,16 @@ module.exports = {
     const user = req.body;
     try {
       console.log(user);
-      const userDB = await User.findOne({
+      const userFromDB = await User.findOne({
         where: {
           email: user.email,
         },
       });
-      console.log(userDB);
-      res.data(userDB);
+      if (!userFromDB) throw new Error();
+      res.json({ email: userFromDB.email });
     } catch (err) {
       console.log(err);
-      res.json(err);
+      res.status(404).send({ Error: 'User not found', ...user });
     }
   },
 };
