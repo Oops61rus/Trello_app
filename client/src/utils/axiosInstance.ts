@@ -1,8 +1,9 @@
 import axios from "axios";
 import { logOut } from 'core/store/auth/actions';
+import { baseURL } from './variables';
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:4000/api/v1",  // убрать в переменную
+  baseURL: baseURL + 'api/v1'
 });
 
 const CancelToken = axios.CancelToken;
