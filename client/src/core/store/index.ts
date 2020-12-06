@@ -2,7 +2,7 @@ import thunkMiddleware from 'redux-thunk';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { routerMiddleware } from 'connected-react-router';
 
-import rootReducer from 'core/store/rootReducer';
+import { rootReducer } from 'core/store/rootReducer';
 import history from 'utils/history';
 
 declare global {
