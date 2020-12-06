@@ -1,26 +1,87 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 
-import img from "assets/images/trello-logo-blue.png";
+import { signIn } from 'core/store/auth/actions';
+import { IFormInputs } from 'interfaces';
+import { RootState } from 'types';
+
+import img from "assets/images/trello-logo-blue.svg";
 import "./styles.css";
 
+let schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().min(5).max(30).required()
+})
+
+
 const SignIn: React.FC = () => {
+  const { register, handleSubmit, errors } = useForm<IFormInputs>({
+    resolver: yupResolver(schema)
+  })
+
+  const dispatch = useDispatch();
+  const onSubmit = (data: IFormInputs) => 
+    dispatch(signIn(data))
+  const email: any = useSelector<RootState>(
+    (state: RootState) => state.authReducer.email
+  )
+
   return (
     <>
       <div className="to__main">
         <Link to="/">
-          <img src={img} alt="Trello logo" className="trello-logo-blue" />
+          <img 
+            src={img} 
+            alt="Trello logo" 
+            className="trello_logo_blue" 
+          />
         </Link>
       </div>
       <div className="signin__block">
-        <h1>Sign in, please</h1>
-        <form className="signIn__form">
-          <input type="text" className="email" placeholder="E-mail:" />
-          <input type="password" className="password" placeholder="Password:" />
-          <button type="submit" className="signIn__btn">
+        <h2>Sign in, please</h2>
+        {
+          email &&
+          <div className="account_registered">
+            <span>
+              This email address is used for another account. Sign in to use Trello.
+            </span>
+          </div>
+        } 
+        <form 
+          className="signIn__form" 
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <input 
+            type="text" 
+            className="email" 
+            placeholder="E-mail:" 
+            ref={register} 
+            defaultValue={email}
+          />
+          {
+            errors.name &&
+            <div className="errors">{errors.name?.message}</div>
+          }
+          <input 
+            type="password" 
+            className="password" 
+            placeholder="Password:" 
+            ref={register} 
+          />
+          {
+            errors.password &&
+            <div className="errors">{errors.password?.message}</div>
+          }
+          <button 
+            type="submit" 
+            className="signIn__btn"
+          >
             LogIn
           </button>
-          <div className="wrong"></div>
           <div className="not__registered">
             <p>
               Not registered yet?{" "}

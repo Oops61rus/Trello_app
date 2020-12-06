@@ -4,26 +4,38 @@
 
 .to__main {
   text-align: center;
-  margin: 10px auto;
+  margin: 0;
   outline: none;
   width: 100%;
 }
 
-.trello-logo-blue {
-  width: 10%;
+.trello_logo_blue {
+  height: 43px;
+  margin: 40px auto;
 }
 
 .signin__block {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 30%;
-  padding: 30px;
+  width: 400px;
+  padding: 25px 40px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
 }
 
 .signin__block h1 {
   margin: 0 0 20px 0;
+}
+
+.account_registered {
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  padding: 0.5em 1em;
+  margin-bottom: 20px;
+  border: 1px solid #f2d600;
+  background-color: #faf3c0;
+  border-radius: 4px;
 }
 
 .signIn__form {
@@ -58,10 +70,4 @@
 
 .signUp_link {
   margin: 16px 2px;
-}
-
-.error {
-  text-align: center;
-  color: red;
-  width: 100%;
 }

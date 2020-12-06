@@ -10,8 +10,8 @@
 }
 
 .sign__up {
-  width: 30%;
-  padding: 30px;
+  width: 400px;
+  padding: 25px 40px;
   box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
 }
 
@@ -76,11 +76,12 @@ h1 {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  color: white;
-  padding: 5px;
-  border-radius: 4px;
   width: 100%;
-  background-color: #eb5a46;
+  background: #eb5a46;
+  color: #fbedeb;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 0.5em 1em;
 }
 
 .signIn_link {
