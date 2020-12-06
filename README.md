@@ -48,9 +48,13 @@ TIMESTAMPS=true
 
 ```
 
-Also if you launch this app on other domain and port, you need to change `port` in the file along the path `config/default.json`
+Also if you launch this app on other domain and port, you need to change `port` in the file along the path `config/default.json`.
 Default: `4000`
 
+And then launch the server with 
+```
+npm start
+```
 
 #### Frontend part
 
