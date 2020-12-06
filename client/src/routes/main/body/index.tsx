@@ -20,7 +20,10 @@ const MainBody: React.FC = () => {
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = (data: IFormOneInput) => dispatch(checkUser(data));
+  const onSubmit = (data: IFormOneInput) => {
+    if(!data.email) return;
+    dispatch(checkUser(data));
+  }
 
   return (
     <>
