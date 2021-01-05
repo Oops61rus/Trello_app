@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -20,19 +20,34 @@ let schema = yup.object().shape({
 
 
 export default function SignUp() {
-  const { register, handleSubmit, errors } = useForm<IFormInputs>({
+  const { register, handleSubmit, errors, setValue } = useForm<IFormInputs>({
     resolver: yupResolver(schema)
   });
+
   const dispatch = useDispatch()
-  const onSubmit = (data: IFormInputs) => 
-    dispatch(signUp(data)); 
+  const onSubmit = (data: IFormInputs) => {
+    dispatch(signUp(data));
+    setValue("name", "")
+    setValue("email", "")
+    setValue("password", "")
+    setValue("passwordConfirm", "")
+  } 
   const email: any = useSelector<RootState>(
     (state: RootState) => state.authReducer.email
   )
 
+  const isAuthenticated: any = useSelector<RootState>(
+    (state: RootState) => state.authReducer.isAuthenticated
+  )
+
+  if (isAuthenticated) {
+    return (
+      <Redirect to='/boards' />
+    )
+  }
   return (
     <>
-      <div className="to__main">
+      <div className="to__start__page">
         <Link to="/">
           <img 
             src={img} 
@@ -54,7 +69,7 @@ export default function SignUp() {
           />
           {
             errors.email &&
-            <div className="errors">{errors.email?.message}</div>
+            <div className="errors">{errors.email.message}</div>
           }
           <input 
             name="name" 
@@ -65,7 +80,7 @@ export default function SignUp() {
           />
           {
             errors.name &&
-            <div className="errors">{errors.name?.message}</div>
+            <div className="errors">{errors.name.message}</div>
           }
           <input
             name="password"
@@ -76,7 +91,7 @@ export default function SignUp() {
           />
           {
             errors.password &&
-            <div className="errors">{errors.password?.message}</div>
+            <div className="errors">{errors.password.message}</div>
           }
           <input
             name="passwordConfirm"
@@ -87,7 +102,7 @@ export default function SignUp() {
           />
           {
             errors.passwordConfirm &&
-            <div className="errors">{errors.passwordConfirm?.message}</div>
+            <div className="errors">{errors.passwordConfirm.message}</div>
           }
           <button type="submit" className="sign__up__btn">
             Sign Up

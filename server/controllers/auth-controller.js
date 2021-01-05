@@ -41,9 +41,10 @@ module.exports = {
         id: userDB.id,
         token,
       };
+      console.log(activeUser);
       res.json(activeUser);
     } catch (error) {
-      res.json(error);
+      res.status(401).send(error);
     }
   },
 

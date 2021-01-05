@@ -14,7 +14,7 @@ let schema = yup.object().shape({
   email: yup.string().email(),
 })
 
-const MainBody: React.FC = () => {
+const StartPageBody: React.FC = () => {
   const dispatch = useDispatch();
   const { register, handleSubmit, errors } = useForm<IFormOneInput>({
     resolver: yupResolver(schema)
@@ -65,4 +65,4 @@ const MainBody: React.FC = () => {
   );
 };
 
-export default MainBody;
+export default StartPageBody;

@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 import img from "assets/images/Trello-logo.png";
 
-const MainHeader: React.FC = () => (
-  <div className="main__header">
+const StartPageHeader: React.FC = () => (
+  <div className="start__page__header">
     <img src={img} alt="Trello logo" className="main__logo" />
     
     <div className="header__buttons">
@@ -19,4 +19,4 @@ const MainHeader: React.FC = () => (
   </div>
 );
 
-export default MainHeader;
+export default StartPageHeader;

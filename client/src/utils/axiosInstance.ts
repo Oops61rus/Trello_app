@@ -19,7 +19,9 @@ axiosInstance.interceptors.request.use(
       cancel = c;
     });
 
-    config.headers.authorization = localStorage.getItem('token')
+    if(localStorage.getItem('token')) {
+      config.headers.authorization = `Bearer ${localStorage.getItem('token')}`
+    }
 
     return config;
   },

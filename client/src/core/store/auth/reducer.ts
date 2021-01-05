@@ -1,5 +1,5 @@
 import { IUserLoginAction, IUserDataForLogin } from 'interfaces';
-import { CHECK_USER, AUTH_USER_SUCCESS } from 'core/store/auth/actions';
+import { CHECK_USER, AUTH_USER_SUCCESS, INVALID_TOKEN } from 'core/store/auth/actions';
 
 const initialState: IUserDataForLogin = {
   email: '',
@@ -24,6 +24,11 @@ export const authReducer = (state = initialState, action: IUserLoginAction) => {
         id: payload.id,
         isAuthenticated: true,
       };
+    case INVALID_TOKEN:
+      return {
+        ...state,
+        initialState
+      }
     default:
       return state;
   }

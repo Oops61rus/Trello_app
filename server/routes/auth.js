@@ -2,6 +2,7 @@ const express = require('express');
 const controller = require('../controllers');
 const { body } = require('express-validator');
 const { validate } = require('../services/validator');
+const checkToken = require('../services/checkToken');
 
 const router = express.Router();
 
@@ -35,5 +36,10 @@ router.post(
   ]),
   controller.auth.loginUser
 );
+
+router.post(
+  '/init',
+  checkToken
+)
 
 module.exports = router;

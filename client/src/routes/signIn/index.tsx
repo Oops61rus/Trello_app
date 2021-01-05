@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,20 +19,31 @@ let schema = yup.object().shape({
 
 
 const SignIn: React.FC = () => {
-  const { register, handleSubmit, errors } = useForm<IFormInputs>({
+  const { register, handleSubmit, errors, setValue } = useForm<IFormInputs>({
     resolver: yupResolver(schema)
   })
 
   const dispatch = useDispatch();
-  const onSubmit = (data: IFormInputs) => 
-    dispatch(signIn(data))
+  const onSubmit = (data: IFormInputs) => {
+    dispatch(signIn(data));
+    setValue('email', '')
+    setValue('password', '')
+  } 
   const email: any = useSelector<RootState>(
     (state: RootState) => state.authReducer.email
   )
+  const isAuthenticated: any = useSelector<RootState>(
+    (state: RootState) => state.authReducer.isAuthenticated
+  )
 
+  if (isAuthenticated) {
+    return (
+      <Redirect to='/boards' />
+    )
+  }
   return (
     <>
-      <div className="to__main">
+      <div className="to__start__page">
         <Link to="/">
           <img 
             src={img} 
@@ -56,6 +67,7 @@ const SignIn: React.FC = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <input 
+            name="email"
             type="text" 
             className="email" 
             placeholder="E-mail:" 
@@ -66,7 +78,8 @@ const SignIn: React.FC = () => {
             errors.name &&
             <div className="errors">{errors.name?.message}</div>
           }
-          <input 
+          <input
+            name="password" 
             type="password" 
             className="password" 
             placeholder="Password:" 
